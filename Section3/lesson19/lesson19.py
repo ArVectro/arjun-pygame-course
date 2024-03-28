@@ -1,3 +1,4 @@
+# write lesson14 in a function
 def applicantsAcceptance(degree, experience):
     if degree == "Master's" or degree == "PhD" and experience > 2:
         return("We will take you for the job. Congrats!")

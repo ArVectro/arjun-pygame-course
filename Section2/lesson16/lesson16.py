@@ -16,3 +16,4 @@ print(fruits)
 print(fruits['orange']) # prints the price of an orange
 fruits['melon'] = 3.01 # makes a new fruit; a melon; and prices it at $3.01
 print(fruits)
+print('banana' in fruits) # Checks whether banana is in the dictionary of fruits.
