@@ -7,7 +7,8 @@ FPS = 60 # we need to specify the frame rate so that the game runs the same in e
 
 GScreen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Game1") # This sets the title to "Game1"
-PICTURE = pygame.image.load(os.path.join('Users', 'arjun', 'pythoncode', 'mystuff', 'recources','download.jpg')) # This is our picture from the folder 'resources'
+PICTURE = pygame.image.load(os.path.join('download.jpg')) # This is our picture from the folder 'resources'
+SONG = os.path.join(os.getcwd(), 'the-mandalorian-theme-song-made-with-Voicemod.mp3')
 
 def draw_fn():
     GScreen.fill((255, 255, 255)) # white
@@ -15,8 +16,12 @@ def draw_fn():
     pygame.display.update()
 
 def main():
+    
+    pygame.mixer.init()
+    pygame.mixer.music.load(SONG)
+    pygame.mixer.music.play(-1)
     run = True
-    clock = pygame.time.Clock
+    clock = pygame.time.Clock()
 
     while run:
         clock.tick(FPS)
