@@ -2,6 +2,8 @@ import pygame
 
 width, height = 800, 600
 
+FPS = 60 # we need to specify the frame rate so that the game runs the same in every computer no matter how fast the computer is running
+
 GScreen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Game1") # This sets the title to "Game1"
 
@@ -11,8 +13,10 @@ def draw_fn():
 
 def main():
     run = True
+    clock = pygame.time.Clock
 
     while run:
+        clock.tick(FPS)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit() # This checks for the quit message so we can actually exit the screen
