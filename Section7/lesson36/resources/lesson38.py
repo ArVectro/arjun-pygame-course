@@ -45,7 +45,6 @@ def createBoard(num_rows,num_cols,num_cells):
         elif direction == 3: blank_cell_idx = moveD(board, blank_cell_idx, num_cols)
     return board, blank_cell_idx
 
-
 def getImagePaths(rootdir):
     imagenames = os.listdir(rootdir)
     assert len(imagenames) >0
@@ -60,11 +59,14 @@ def showEndInterface(screen, width, height):
     screen.blit(title, rect)
     pygame.display.update()
     while True:
-        for event in pygame.event:
-            if (event.type == pygame.QUIT) or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                 pygame.quit()
                 sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                return  # Return control back to the main loop
         pygame.display.update()
+
 
 def showStartInterface(screen, width, height):
     screen.fill(cfg.BACKGROUND_COLOR)
