@@ -48,6 +48,8 @@ def createBoard(num_rows,num_cols,num_cells):
 def getImagePaths(rootdir):
     imagenames = os.listdir(rootdir)
     assert len(imagenames) >0
+    print(imagenames)
+    
     return os.path.join(rootdir, random.choice(imagenames))
 
 def showEndInterface(screen, width, height):
@@ -102,11 +104,12 @@ def main():
     pygame.init()
     clock = pygame.time.Clock()
     image_path = getImagePaths(cfg.PICTURE_ROOT_DIRECTORY)
+    print(image_path)
     game_img_used = pygame.image.load(image_path)
     game_img_used = pygame.transform.scale(game_img_used, cfg.SCREENSIZE)
     game_img_used_rect = game_img_used.get_rect()
     screen = pygame.display.set_mode(cfg.SCREENSIZE)
-    pygame.display.set_caption('Pokemon')
+    pygame.display.set_caption('Pokemon-Puzzle')
     size = showStartInterface(screen, game_img_used_rect.width, game_img_used_rect.height)
     assert isinstance(size, int)
     num_rows, num_cols = size, size
