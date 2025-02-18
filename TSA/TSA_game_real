@@ -1,0 +1,87 @@
+import pygame
+import sys
+
+pygame.init()
+
+
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
+
+# bank dimensions
+BANK_WIDTH = 1600
+BANK_HEIGHT = 1200
+
+background_image = pygame.image.load('TSA/teal_background.jpeg')
+
+
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+pygame.display.set_caption("Maze Game")
+
+# Colors
+WHITE = (255, 255, 255)
+GREEN = (0, 255, 0)
+
+
+player_size = 50
+player_color = GREEN
+player_x = BANK_WIDTH // 2
+player_y = BANK_HEIGHT // 2
+player_speed = 5
+
+maze = pygame.Surface((BANK_WIDTH, BANK_HEIGHT))
+maze.fill(WHITE)
+
+
+clock = pygame.time.Clock()
+running = True
+
+
+camera_x = player_x - SCREEN_WIDTH // 2
+camera_y = player_y - SCREEN_HEIGHT // 2
+
+
+def clamp_camera():
+    global camera_x, camera_y
+
+    camera_x = max(0, min(BANK_WIDTH - SCREEN_WIDTH, camera_x))
+    camera_y = max(0, min(BANK_HEIGHT - SCREEN_HEIGHT, camera_y))
+
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+    
+
+    keys = pygame.key.get_pressed()
+    
+    if keys[pygame.K_LEFT]:
+        player_x -= player_speed
+    if keys[pygame.K_RIGHT]:
+        player_x += player_speed
+    if keys[pygame.K_UP]:
+        player_y -= player_speed
+    if keys[pygame.K_DOWN]:
+        player_y += player_speed
+
+    camera_x = player_x - SCREEN_WIDTH // 2
+    camera_y = player_y - SCREEN_HEIGHT // 2
+
+    clamp_camera()
+
+
+    screen.blit(background_image, 200, 200)
+
+
+    screen.blit(maze, (-camera_x, -camera_y))
+
+
+    pygame.draw.rect(screen, player_color, (SCREEN_WIDTH // 2 - player_size // 2, SCREEN_HEIGHT // 2 - player_size // 2, player_size, player_size))
+
+
+    pygame.display.flip()
+
+    clock.tick(60)
+
+# Quit Pygame
+pygame.quit()
+sys.exit()

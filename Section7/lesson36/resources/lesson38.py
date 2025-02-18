@@ -101,12 +101,12 @@ def showStartInterface(screen, width, height):
         pygame.display.update()
 
 def main():
-    pygame.init()
-    clock = pygame.time.Clock()
-    image_path = getImagePaths(cfg.PICTURE_ROOT_DIRECTORY)
-    print(image_path)
-    game_img_used = pygame.image.load(image_path)
-    game_img_used = pygame.transform.scale(game_img_used, cfg.SCREENSIZE)
+    pygame.init() # initializes pygame
+    clock = pygame.time.Clock() # defines a time variable
+    image_path = getImagePaths(cfg.PICTURE_ROOT_DIRECTORY) # the image paths
+    print(image_path) # prints paths for the images
+    game_img_used = pygame.image.load(image_path) # variable w/ loads the images into pygame
+    game_img_used = pygame.transform.scale(game_img_used, cfg.SCREENSIZE) # auto scale
     game_img_used_rect = game_img_used.get_rect()
     screen = pygame.display.set_mode(cfg.SCREENSIZE)
     pygame.display.set_caption('Pokemon-Puzzle')
